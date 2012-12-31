@@ -1,0 +1,6 @@
+#!/bin/bash
+sess=$1
+if ! tmux has-session -t $sess; then
+  tmux new-session -s $sess -d
+fi
+exec tmux attach -t $sess
