@@ -1,43 +1,44 @@
-# Load zshuery
-source ${HOME}/.zshuery/zshuery.sh
-load_defaults
-load_aliases
-load_correction
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
 
-alias ls='ls -G'
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
 
-load_completion ${HOME}/.zshuery/completion
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Enable menu select
-zstyle ':completion:*' menu select
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# Enable tree view for kill completion
-zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -e -o pid,user,tty,cmd'
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# Modify zshuery correction prompt
-SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
+# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
-# Non-Gentoo users might configure their prompt manually.
-# The default Gentoo prompt from above would look like this:
-#PROMPT="%B%{$fg[green]%}%n@%m%k%{$reset_color%} %B%{$fg[blue]%}%1~ %# %b%f%k%{$reset_color%}"
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# Set options
-setopt complete_in_word
-setopt path_dirs
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# Load modules
-# zmodload zsh/pcre
-zmodload zsh/regex
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-# Update terminal CWD once and then on every CWD change
-update_terminal_cwd
-function chpwd() {
-  update_terminal_cwd
-}
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
 
-# THEME
-source $HOME/dotfiles/zsh/cloud.zsh-theme
-# RVM stuff
-source $HOME/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source $ZSH/oh-my-zsh.sh
+
+# chruby
+RUBIES=(/usr/local/rubies/*)
+source /usr/local/share/chruby/chruby.sh
+
+# tmux
+create_or_attach_to_tmux_session base

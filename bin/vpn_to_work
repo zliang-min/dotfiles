@@ -1,0 +1,4 @@
+#!/bin/bash
+echo -n "username: > "
+read username
+penconnect -u $username vpn.work.host
